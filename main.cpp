@@ -7,18 +7,18 @@
 #include <time.h>//zeit als seed für einen zufallsgenerator
 //roulette test
 
+int gesamt[37];
+int rot[5] = {1, 3, 5, 7, 9};
+int schwarz[5] = {2, 4, 6, 8};
+int score = 10;
+int max_length_gesamt = sizeof(gesamt) / sizeof(gesamt[0]) - 1;
+
 void array_f(int array[], int min, int max) {
     int i;
     for(i = min; i <= max; i++) {
         array[i] = i;
     }
 }
-
-int gesamt[37];
-int rot[5] = {1, 3, 5, 7, 9};
-int schwarz[5] = {2, 4, 6, 8};
-int score = 10;
-int max_length_gesamt = sizeof(gesamt) / sizeof(gesamt[0]) - 1;
 
 int random_f() {
     srand(time(NULL));//seed als aktuelle zeit um immer unterschiedlichen seed zu haben
@@ -73,10 +73,12 @@ void run() {
         else if (eingabe == 10) {
             score_eingabe = scoreabzug_f();
             printf("rot");//debugging mit for schleife jeden teil des array überprüfen
+            return;//debugging
         }
         else if (eingabe == 11) {
             score_eingabe = scoreabzug_f();
             printf("schwarz");//debugging
+            return;//debugging
         }
         else {
             score_eingabe = scoreabzug_f();
