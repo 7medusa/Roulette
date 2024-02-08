@@ -28,34 +28,34 @@ int random_f() {
     return random;
 }
 
-int eingabe_f() {
-    int eingabe;
+int input_f() {
+    int input;
     printf("eine zahl zwischen 0 und 9, 10 fuer rot und 11 fuer schwarz, 12 fuer verlassen\n");
     printf("ihre eingabe:\n>");
-    scanf("%d", &eingabe);//input for the number to bet
+    scanf("%d", &input);//input for the number to bet
     getchar();
 
-    if(eingabe < 0 || eingabe > 11) {
+    if(input < 0 || input > 11) {
         return -1;//false input
     }
     else {
-        return eingabe;
+        return input;
     }
 }
 
 int scoreabzug_f() {
-    int eingabe;
+    int input;
     printf("score input:\n>");
-    scanf("%d", &eingabe);//input for the bet
+    scanf("%d", &input);//input for the bet
     getchar();
 
-    if(eingabe > score) {
+    if(input > score) {
         printf("falsche eingabe\n");
         return scoreabzug_f();
     }
     else {
-        score = score - eingabe;
-        return eingabe;
+        score = score - input;
+        return input;
     }
 }
 
@@ -63,30 +63,30 @@ void run() {//check if you win, main function
     while(score > 0) {
         printf("aktueller score: %d\n", score);
 
-        int eingabe = eingabe_f();
+        int input = input_f();
         int random = random_f();
-        int score_eingabe;
+        int score_input;
 
-        if (eingabe == -1) {
+        if (input == -1) {
             printf("good bye");
             return;
         }
-        else if (eingabe == 10) {
-            score_eingabe = scoreabzug_f();
+        else if (input == 10) {
+            score_input = scoreabzug_f();
             printf("rot");//debugging mit for schleife jeden teil des array überprüfen
             return;//debugging
         }
-        else if (eingabe == 11) {
-            score_eingabe = scoreabzug_f();
+        else if (input == 11) {
+            score_input = scoreabzug_f();
             printf("schwarz");//debugging
             return;//debugging
         }
         else {
-            score_eingabe = scoreabzug_f();
+            score_input = scoreabzug_f();
             printf("die zahl lautet %d\n", random);
-            if(eingabe == random) {
+            if(input == random) {
                 printf("gewonnen\n");
-                score = score + score_eingabe * 2;
+                score = score + score_input * 2;
             }
             else {
                 printf("verloren\n");
