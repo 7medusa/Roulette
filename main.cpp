@@ -59,7 +59,7 @@ int scoreabzug_f() {
     }
 }
 
-void run() {//check if you win, main function
+void run() {//main function
     while(score > 0) {
         printf("aktueller score: %d\n", score);
 
