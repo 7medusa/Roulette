@@ -4,16 +4,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
-#include <time.h>//zeit als seed für einen zufallsgenerator
-//roulette test
+#include <time.h>
 
-int gesamt[37];
-int rot[5] = {1, 3, 5, 7, 9};
-int schwarz[5] = {2, 4, 6, 8};
+//arrays for the different winner types
+int total[37];
+int red[5] = {1, 3, 5, 7, 9};
+int black[5] = {2, 4, 6, 8};
+
 int score = 10;
-int max_length_gesamt = sizeof(gesamt) / sizeof(gesamt[0]) - 1;
+int max_length_total = sizeof(total) / sizeof(total[0]) - 1;
 
-void array_f(int array[], int min, int max) {
+void array_f(int array[], int min, int max) {//function to get information into arrays
     int i;
     for(i = min; i <= max; i++) {
         array[i] = i;
@@ -21,9 +22,9 @@ void array_f(int array[], int min, int max) {
 }
 
 int random_f() {
-    srand(time(NULL));//seed als aktuelle zeit um immer unterschiedlichen seed zu haben
+    srand(time(NULL));//the current time as the seed
 
-    int random = gesamt[0] + rand() % (max_length_gesamt - gesamt[0] + 1);//wählt eine zahl aus mit min und max, min und max später ändern
+    int random = total[0] + rand() % (max_length_total - total[0] + 1);//choosing the winner number
     return random;
 }
 
@@ -31,11 +32,11 @@ int eingabe_f() {
     int eingabe;
     printf("eine zahl zwischen 0 und 9, 10 fuer rot und 11 fuer schwarz, 12 fuer verlassen\n");
     printf("ihre eingabe:\n>");
-    scanf("%d", &eingabe);
+    scanf("%d", &eingabe);//input for the number to bet
     getchar();
 
     if(eingabe < 0 || eingabe > 11) {
-        return -1;
+        return -1;//false input
     }
     else {
         return eingabe;
@@ -45,7 +46,7 @@ int eingabe_f() {
 int scoreabzug_f() {
     int eingabe;
     printf("score input:\n>");
-    scanf("%d", &eingabe);
+    scanf("%d", &eingabe);//input for the bet
     getchar();
 
     if(eingabe > score) {
@@ -58,7 +59,7 @@ int scoreabzug_f() {
     }
 }
 
-void run() {
+void run() {//check if you win, main function
     while(score > 0) {
         printf("aktueller score: %d\n", score);
 
@@ -96,7 +97,7 @@ void run() {
 }
 
 int main() {
-    array_f(gesamt, 0, 36);//array gesamt
+    array_f(total, 0, 36);//array gesamt
     //weitere arrays definieren
     run();
     return 0;
