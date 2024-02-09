@@ -43,7 +43,7 @@ int input_f() {
 
     if(input < 0 || input > 42) {
         return -1;//false input
-    }//bereich ändern
+    }
     else if(input == -1) {
         return -1;
     }
@@ -59,7 +59,7 @@ int jetons_f() {
     getchar();
 
     if(input > jetons) {
-        printf("falsche eingabe\n");
+        printf("false input\n");
         return jetons_f();
     }
     else {
@@ -70,7 +70,7 @@ int jetons_f() {
 
 void run() {//main function
     while(jetons > 0) {
-        printf("aktuelle jetons: %d\n", jetons);
+        printf("jetons: %d\n", jetons);
 
         int input = input_f();
         int random = random_f();
@@ -112,17 +112,17 @@ void run() {//main function
         }
         else {
             jetons_input = jetons_f();
-            printf("die zahl lautet %d\n", random);
+            printf("the number is %d\n", random);
             if(input == random) {
-                printf("gewonnen\n");
+                printf("win\n");
                 jetons = jetons + jetons_input * 2;
             }
             else {
-                printf("verloren\n");
+                printf("loose\n");
             }
         }
     }
-    printf("keine coins mehr\n");
+    printf("you dont have any jetons anymore\n");
 }
 
 int main() {
