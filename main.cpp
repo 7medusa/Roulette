@@ -15,7 +15,7 @@ int black[5] = {2, 4, 6, 8};
 //1to18
 //19to36
 
-int score = 10;
+int jetons = 10;
 int max_length_total = sizeof(total) / sizeof(total[0]) - 1;
 
 void array_f(int array[], int min, int max, int step = 1) {//function to get information into arrays
@@ -54,23 +54,23 @@ int input_f() {
 
 int scoreabzug_f() {
     int input;
-    printf("score input:\n>");
+    printf("jetons input:\n>");
     scanf("%d", &input);//input for the bet
     getchar();
 
-    if(input > score) {
+    if(input > jetons) {
         printf("falsche eingabe\n");
         return scoreabzug_f();
     }
     else {
-        score = score - input;
+        jetons -= input;
         return input;
     }
 }
 
 void run() {//main function
-    while(score > 0) {
-        printf("aktueller score: %d\n", score);
+    while(jetons > 0) {
+        printf("aktuelle jetons: %d\n", jetons);
 
         int input = input_f();
         int random = random_f();
@@ -105,7 +105,7 @@ void run() {//main function
             printf("die zahl lautet %d\n", random);
             if(input == random) {
                 printf("gewonnen\n");
-                score = score + score_input * 2;
+                jetons = jetons + score_input * 2;
             }
             else {
                 printf("verloren\n");
