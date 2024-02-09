@@ -10,10 +10,10 @@
 int total[37];
 int even[30];
 int odd[30];
+int first18[19];
+int last18[19];
 int red[5] = {1, 3, 5, 7, 9};
 int black[5] = {2, 4, 6, 8};
-//1to18
-//19to36
 
 int jetons = 10;
 int max_length_total = sizeof(total) / sizeof(total[0]) - 1;
@@ -36,12 +36,12 @@ int random_f() {
 
 int input_f() {
     int input;
-    printf("eine zahl zwischen 0 und 9, 37 fuer rot und 38 fuer schwarz, 39 für odd, 40 für even, -1 fuer verlassen\n");
+    printf("eine zahl zwischen 0 und 9, 37 fuer rot und 38 fuer schwarz, 39 für odd, 40 für even, 41 fuer die ersten 18, 42 fuer die letzten 18, -1 fuer verlassen\n");
     printf("ihre eingabe:\n>");
     scanf("%d", &input);//input for the number to bet
     getchar();
 
-    if(input < 0 || input > 40) {
+    if(input < 0 || input > 42) {
         return -1;//false input
     }//bereich ändern
     else if(input == -1) {
@@ -52,7 +52,7 @@ int input_f() {
     }
 }
 
-int scoreabzug_f() {
+int jetons_f() {
     int input;
     printf("jetons input:\n>");
     scanf("%d", &input);//input for the bet
@@ -60,7 +60,7 @@ int scoreabzug_f() {
 
     if(input > jetons) {
         printf("falsche eingabe\n");
-        return scoreabzug_f();
+        return jetons_f();
     }
     else {
         jetons -= input;
@@ -74,38 +74,48 @@ void run() {//main function
 
         int input = input_f();
         int random = random_f();
-        int score_input;
+        int jetons_input;
 
         if (input == -1) {
             printf("good bye");
             return;
         }
         else if (input == 37) {
-            score_input = scoreabzug_f();
+            jetons_input = jetons_f();
             printf("rot");//debugging mit for schleife jeden teil des array überprüfen
             return;//debugging
         }
         else if (input == 38) {
-            score_input = scoreabzug_f();
+            jetons_input = jetons_f();
             printf("schwarz");//debugging
             return;//debugging
         }
         else if (input == 39) {
-            score_input = scoreabzug_f();
+            jetons_input = jetons_f();
             printf("odd");//debugging
             return;//debugging
         }
         else if (input == 40) {
-            score_input = scoreabzug_f();
+            jetons_input = jetons_f();
             printf("even");//debugging
             return;//debugging
         }
+        else if(input == 41) {
+            jetons_input = jetons_f();
+            printf("ersten 18");
+            return;
+        }
+        else if(input == 42) {
+            jetons_input = jetons_f();
+            printf("letzten 18");
+            return;
+        }
         else {
-            score_input = scoreabzug_f();
+            jetons_input = jetons_f();
             printf("die zahl lautet %d\n", random);
             if(input == random) {
                 printf("gewonnen\n");
-                jetons = jetons + score_input * 2;
+                jetons = jetons + jetons_input * 2;
             }
             else {
                 printf("verloren\n");
@@ -120,6 +130,8 @@ int main() {
     array_f(total, 0, 36);
     array_f(even, 2, 36, 2);
     array_f(odd, 1, 36, 2);
+    array_f(first18, 1, 18, 1);
+    array_f(last18, 19, 36, 1);
 
     run();
     return 0;
