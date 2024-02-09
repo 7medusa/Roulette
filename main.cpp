@@ -36,15 +36,15 @@ int random_f() {
 
 int input_f() {
     int input;
-    printf("eine zahl zwischen 0 und 9, 37 fuer rot und 38 fuer schwarz, 39 für odd, 40 für even, 42 fuer verlassen\n");
+    printf("eine zahl zwischen 0 und 9, 37 fuer rot und 38 fuer schwarz, 39 für odd, 40 für even, -1 fuer verlassen\n");
     printf("ihre eingabe:\n>");
     scanf("%d", &input);//input for the number to bet
     getchar();
 
-    if(input < 0 || input > 11) {
+    if(input < 0 || input > 40) {
         return -1;//false input
-    }
-    else if(input == 42) {
+    }//bereich ändern
+    else if(input == -1) {
         return -1;
     }
     else {
