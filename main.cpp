@@ -18,8 +18,15 @@ int black[5] = {2, 4, 6, 8};
 int jetons = 10;
 int max_length_total = sizeof(total) / sizeof(total[0]) - 1;
 
-void array_check_f() {//function, to check if a number is in a specific array
-    int x = 42;
+int array_check_f(int array[], int input) {//function, to check if a number is in a specific array
+    int i;
+    int max_length_array = sizeof(array);
+    for(i = 0; i < max_length_array; i++) {
+        if(input == array[i]) {
+            return 0;
+        }
+    }
+    return -1;
 }
 
 void array_f(int array[], int min, int max, int step = 1) {//function to get information into arrays
